@@ -1,4 +1,7 @@
-import quizComplete from "../assets/quiz-complete.png";
+import winningHomer from "../assets/winning_homer.png";
+import averageHomer from "../assets/average_homer.png";
+import doh from "../assets/doh.png";
+import missingBrainHomer from "../assets/missingBrainHomer.jpg";
 import QUESTIONS from "../questions.js";
 export default function Summary({ userAnswers }) {
   const skippedAnswers = userAnswers.filter((answer) => answer === null);
@@ -15,9 +18,20 @@ export default function Summary({ userAnswers }) {
   );
 
   const wrongAnswerShare = 100 - skippedAnswersShare - correctAnswersShare;
+
+  let whatImageToShow = "";
+  if (correctAnswers.length === userAnswers.length) {
+    whatImageToShow = winningHomer;
+  } else if (skippedAnswers.length === userAnswers.length) {
+    whatImageToShow = doh;
+  } else if (correctAnswers.length === skippedAnswers.length) {
+    whatImageToShow = averageHomer;
+  } else {
+    whatImageToShow = missingBrainHomer;
+  }
   return (
     <div id="summary">
-      <img src={quizComplete} alt="Quiz is complete" />
+      <img src={whatImageToShow} alt="Quiz is complete" />
       <h2>Quiz Completed</h2>
       <div id="summary-stats">
         <p>
@@ -33,7 +47,7 @@ export default function Summary({ userAnswers }) {
           <span className="text">answered incorrectly</span>
         </p>
       </div>
-      <ol>
+      {/* <ol>
         {userAnswers.map((answer, index) => {
           let cssClasses = "user-answer";
 
@@ -53,7 +67,7 @@ export default function Summary({ userAnswers }) {
             </li>
           );
         })}
-      </ol>
+      </ol> */}
     </div>
   );
 }

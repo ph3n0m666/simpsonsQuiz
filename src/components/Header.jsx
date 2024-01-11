@@ -1,4 +1,4 @@
-import logoImg from "../assets/Homer_Simpson-removebg-preview.png";
+import logoImg from "../assets/thinking_homer.png";
 export default function Header() {
   return (
     <header>
