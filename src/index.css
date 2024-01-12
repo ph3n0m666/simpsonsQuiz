@@ -356,3 +356,29 @@ header h1 {
 /* .square-image:hover {
   transform: scale(1.2);
 } */
+
+.simpsonsButtonContainer {
+    display: flex;
+      justify-content: center;
+      align-items: center;
+}
+.simpsonsButton {
+  
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #FFD90F;
+  color: #0033a0;
+  border: 2px solid #0033a0;
+  border-radius: 20px;
+  /* Adjust the value for the desired roundness */
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect */
+.simpsonsButton:hover {
+  background-color: #0033a0;
+  color: #FFD90F;
+}

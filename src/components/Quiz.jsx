@@ -1,16 +1,19 @@
-import { useState, useCallback } from "react";
+import { useContext, useState, useCallback } from "react";
 
-import QUESTIONS from "../questions.js";
+import { QuestionsContext } from "../store/quiz-questions-context.jsx";
+// import QUESTIONS from "../questions.js";
 
 import Question from "./Question.jsx";
 import Summary from "./Summary.jsx";
 
 export default function Quiz() {
+  const { questions } = useContext(QuestionsContext);
+
   const [userAnswers, setUserAnswers] = useState([]);
 
   const activeQuestionIndex = userAnswers.length;
 
-  const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
+  const quizIsComplete = activeQuestionIndex === questions.length;
 
   const handleSelectAnswer = useCallback(function handleSelectAnswer(
     selectedAnswer

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import QuestionTimer from "./QuestionTimer";
 import Answers from "./Answers";
-import QUESTIONS from "../questions.js";
+import { QuestionsContext } from "../store/quiz-questions-context.jsx";
 export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
+  const { questions } = useContext(QuestionsContext);
   const [answer, setAnswer] = useState({
     selectedAnswer: "",
     isCorrect: null,
@@ -27,7 +28,7 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
     setTimeout(() => {
       setAnswer({
         selectedAnswer: answer,
-        isCorrect: QUESTIONS[index].answers[0] === answer,
+        isCorrect: questions[index].answers[0] === answer,
       });
 
       setTimeout(() => {
@@ -50,9 +51,9 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
         onTimeout={answer.selectedAnswer === "" ? onSkipAnswer : null}
         mode={answerState}
       />
-      <h2>{QUESTIONS[index].text}</h2>
+      <h2>{questions[index].text}</h2>
       <Answers
-        answers={QUESTIONS[index].answers}
+        answers={questions[index].answers}
         selectedAnswer={answer.selectedAnswer}
         answerState={answerState}
         onSelect={handleSelectAnswer}

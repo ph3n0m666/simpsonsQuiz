@@ -8,7 +8,7 @@ export default function Answers({
   const shuffledAnswers = useRef();
   if (!shuffledAnswers.current) {
     shuffledAnswers.current = [...answers];
-    shuffledAnswers.current.sort(() => Math.floor(Math.random() * 3));
+    shuffledAnswers.current.sort(() => Math.floor(Math.random() - 0.5));
   }
   return (
     <ul id="answers">
